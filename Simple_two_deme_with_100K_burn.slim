@@ -1,0 +1,66 @@
+initialize() {
+//heliconius u
+initializeMutationRate(2.9e-9);
+initializeMutationType("m1", 0.5, "f", 0.0);
+initializeMutationType("m2", 1.0, "f", 0.3); // introduced mutation
+initializeGenomicElementType("g1", m1, 1.0);
+// size of chromosome 17 is 14726131bp
+initializeGenomicElement(g1, 0, 14726131);
+// recombination rate comes from analysis of heredity 2012 data compared to physical size
+initializeRecombinationRate(4.4397e-8);
+}
+1 early() {
+// save this run's identifier, used to save and restore
+sim.readFromPopulationFile("100KGen_burnin_run1.txt");
+defineConstant("simID", getSeed());
+//sim.addSubpop("p1", 10000);
+//sim.addSubpop("p2", 10000);
+p1.setMigrationRates(p2, 0.5); //  migration p2 -> p1
+p2.setMigrationRates(p1, 0.5); //  migration p1 -> p2
+
+}
+
+// 10000 generations of burn-in 10Ne
+100000:100100 mutationEffect(m2) { return 0.9; }
+
+// Onset of selection
+///1820 peak of the industrial revolution
+///1970 clean air legislation (let's say 1980 for environmental effect)
+///160 generations
+
+// We make effect of m2 mutation confers fitness of 1.3, this hopefully corresponds to s = 0.3
+// Need to check if multiple m2 mutations of different lineages give an additive effect or not
+
+100100:100260 mutationEffect(m2,p1) {
+if (homozygous)
+return 1.3;
+else
+return 1.3;
+}
+
+// melanic alleles in the unpolluted resevoir remain mildly deleterious
+100100:100260 mutationEffect(m2,p2) { return 0.9; }
+
+// m2 mutations are arising continuously (but at the snp mutation rate, which differs from TEs)
+// The simulation end point is the 33 years after positive selection stops 
+// 1980 pollution stops up to sample timepoint which is 2013
+100000:100296 early() { 
+target = sample(p1.genomes, 1);
+// location of cortex intron 1 mutations 12398755bp
+target.addNewDrawnMutation(m2, 12398755);
+}
+
+
+
+100260:100320 mutationEffect(m2) { return 0.9; }
+
+
+
+
+100296 late(){
+p1.outputVCFSample(sampleSize=500,filePath="~/Desktop/PostDoc/Biston/Slim_simulations/test296.vcf",simplifyNucleotides=T);
+}
+
+100320 late(){
+p1.outputVCFSample(sampleSize=500,filePath="~/Desktop/PostDoc/Biston/Slim_simulations/test320.vcf",simplifyNucleotides=T);
+}
