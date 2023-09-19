@@ -29,13 +29,13 @@ As an initial experiment we constructed a simple two deme model (polluted/unpoll
 
 The characteristics of this model, are that most functional melanic mutations that arise, are lost very quickly. When selection begins the number of alleles present in the two demes is stochastic. If a single allele is present we see a classic hard sweep, followed by a subsequent sweep in the opposing direction.
 
-<img width="682" alt="Screenshot 2023-09-19 at 11 20 27" src="https://github.com/swomics/PepMothSel/assets/44398000/57da9976-bde2-44c5-ab23-503bb612e1d6">
+<img width="682" alt="Screenshot 2023-09-19 at 11 20 27" src="https://github.com/swomics/PepMothSel/assets/44398000/dcea8b24-ed84-47bb-bc81-6a1cc6c93611">
 
 Figure 3: The frequency trajectories of melanic alleles in the two deme simulation.
 
 When multiple functional alleles are present we see a soft sweep favouring the multiple melanic alleles, followed by a hard sweep in the opposing direction favouring the ancestral non-melanic background.
 
-<img width="682" alt="Screenshot 2023-09-19 at 11 20 55" src="https://github.com/swomics/PepMothSel/assets/44398000/e85ae9c4-6e49-456c-822f-5e796647a38a">
+<img width="682" alt="Screenshot 2023-09-19 at 11 20 55" src="https://github.com/swomics/PepMothSel/assets/44398000/7df9269d-25ba-431b-ab98-81a604ab9e6c">
 
 Figure 4: An independent simulation run, showing alternate frequency trajectories of melanic alleles in the two deme simulation.
 
