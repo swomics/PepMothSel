@@ -3,7 +3,7 @@ This repository holds code for the Biston betularia project. Specifically, the p
 
 We have two approaches to consider:
 
-# Pascal's trajectory simulation
+# Pascal's/Linglong's trajectory simulation
 1) (Bespoke code) Simulate erosion of haplotypes through recombination based on a given frequency trajectory.
 
 Problems: We don't have the same quality of frequency trajectory data for Europe.
