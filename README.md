@@ -25,7 +25,7 @@ Figure 1: An agreed population model consisting of polluted and neighbouring unp
 
 Figure 2: The same population model, as encoded and depicted in Slim:
 
-As an initial experiment we constructed a simple two deme model (polluted/unpolluted). Melanism is also simplified to typica vs melanic with selection coefficients for each depending on the population/timepoint.
+As an initial experiment we constructed a simple two deme model (polluted/unpolluted). Melanism is also simplified to typica vs melanic with selection coefficients for each depending on the population/timepoint. The slim file is available in the repository.
 
 The characteristics of this model, are that most functional melanic mutations that arise, are lost very quickly. When selection begins the number of alleles present in the two demes is stochastic. If a single allele is present we see a classic hard sweep, followed by a subsequent sweep in the opposing direction.
 
