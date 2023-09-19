@@ -36,13 +36,19 @@ Figure 2: An independent simulation run, showing alternate frequency trajectorie
 
 # Specifying a reaonsable demographic model in Slim
 
+We need our model to be able to capture differences in industrialisation onset and enaction of clean air legislation, and also assess whether melanic alleles could spread alongside this anthropogenic activity or are more likely to have arisen/swept from indpendent events.
+
+
+<img width="1026" alt="Industrial_rev_diffusion" src="https://github.com/swomics/PepMothSel/assets/44398000/bb582425-5b33-4875-b556-e5809206a690">
+Figure 3: Our rough understanding of the onset of industrialisation.
+
 ![Screenshot 2023-09-19 at 11 31 32](https://github.com/swomics/PepMothSel/assets/44398000/68a9069b-d821-4857-bd47-280b04f304b4)
 
-Figure 3: An agreed population model consisting of polluted and neighbouring unpolluted demes, roughly corresponding to the areas of industrial development from West to East.
+Figure 4: An agreed population model consisting of polluted and neighbouring unpolluted demes, roughly corresponding to the areas of industrial development from West to East.
 
 <img width="706" alt="Screenshot 2023-09-15 at 10 38 01" src="https://github.com/swomics/PepMothSel/assets/44398000/0ad113b6-dce1-475c-ae5e-a0c80fb57cc5">
 
-Figure 4: The same population model, as encoded and depicted in Slim:
+Figure 5: The same population model, as encoded and depicted in Slim:
 
 
 
