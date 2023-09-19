@@ -1,9 +1,12 @@
 initialize() {
-//heliconius u
+//heliconius u mutation rate
 initializeMutationRate(2.9e-9);
+//m1 rpresents neutral mutations
 initializeMutationType("m1", 0.5, "f", 0.0);
-initializeMutationType("m2", 1.0, "f", 0.3); // introduced mutation
+//m2 rpresents melanic mutations
+initializeMutationType("m2", 1.0, "f", 0.0); // introduced mutation
 initializeGenomicElementType("g1", m1, 1.0);
+//We set the size o the piece of DNA to 300Kbp long
 initializeGenomicElement(g1, 0, 300000);
 /// recombination rate comes from analysis of heredity 2012 data compared to physical size
 initializeRecombinationRate(4.4397e-8);
@@ -11,15 +14,20 @@ initializeRecombinationRate(4.4397e-8);
 1 early() {
 // save this run's identifier, used to save and restore
 defineConstant("simID", getSeed());
+//we define p1 with 10K individuals constant size
 sim.addSubpop("p1", 10000);
+//we define p2 with 10K individuals constant size
 sim.addSubpop("p2", 10000);
-p1.setMigrationRates(p2, 0.5); //  migration p2 -> p1
-p2.setMigrationRates(p1, 0.5); //  migration p1 -> p2
+// we set high bidirectional migration between the two demes
+p1.setMigrationRates(p2, 0.5); //  migration rate p2 -> p1
+p2.setMigrationRates(p1, 0.5); //  migration rate p1 -> p2
 
 }
 
+//from generation 1 to 1000, selection is against melanics (fitness fundtion returns 0.9)
 1:1000 mutationEffect(m2) { return 0.9; }
 
+//In deme p1 from generation 1000 to 1160, selection favours melanics with dominance (fitness function returns 1.3)
 1000:1160 mutationEffect(m2,p1) {
 if (homozygous)
 return 1.3;
@@ -27,16 +35,17 @@ else
 return 1.3;
 }
 
+//In deme p2 (unpolluted resevoir) from generation 1000 to 1160, selection remains against melanics
 1000:1160 mutationEffect(m2,p2) { return 0.9; }
 
-
-1:1000 early() { 
+//from generation 1 to 1000, m2 melanic mutations are drawn fixed in the middle of the simulated DNA (i.e. coordinate 150,000)
+1:1160 early() { 
 target = sample(p1.genomes, 1);
 target.addNewDrawnMutation(m2, 150000);
 }
 
 
-
+//for remainder of simulated generations up to 20,000 selection is against melanics (fitness fundtion returns 0.9)
 1160:20000 mutationEffect(m2) { return 0.9; }
 
 
@@ -45,11 +54,3 @@ target.addNewDrawnMutation(m2, 150000);
 ///160 generations
 
 
-1000:20000 late() {
-if (sim.countOfMutationsOfType(m2) == 0)
-{
-fixed = (sum(sim.substitutions.mutationType == m2) == 1);
-cat(simID + ifelse(fixed, ": FIXED\n", ": LOST\n"));
-sim.simulationFinished();
-}
-}
