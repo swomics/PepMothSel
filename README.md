@@ -12,7 +12,7 @@ See Linglong's overleaf document: https://www.overleaf.com/project/64bf9a4929d5c
 
 # A brute force simulation approach
 1) (msprime/tsinfer) Perform a backwards simulation, to reach a starting point pre-industrialisation.
-2) (Slim) Construct a modelto simulate an onset of selection of a specific strength and with a specific mutation rate.
+2) (Slim) Construct a model to simulate an onset of selection of a specific strength and with a specific mutation rate.
 3) (SBI) Simulate over a parameter space using some priors for selection strength and mutation rate and compare to empirical summary statistics.
 
 Problems: Model mis-specification. Priors - we have can get reasonable priors for selection based on U.K. studies, however TE induced mutation rates may be more challenging.
