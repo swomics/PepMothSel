@@ -17,11 +17,12 @@ See Linglong's overleaf document: https://www.overleaf.com/project/64bf9a4929d5c
 
 Problems: Model mis-specification. Priors - we have can get reasonable priors for selection based on U.K. studies, however TE induced mutation rates may be more challenging.
 
-![Screenshot 2023-09-19 at 11 07 02](https://github.com/swomics/PepMothSel/assets/44398000/3538656c-8e86-4fce-b32a-1b508cf6262e)
+![Screenshot 2023-09-19 at 11 31 32](https://github.com/swomics/PepMothSel/assets/44398000/68a9069b-d821-4857-bd47-280b04f304b4)
+
 
 Figure 1: An agreed population model consisting of polluted and neighbouring unpolluted demes, roughly corresponding to the areas of industrial development from West to East.
 
-<img width="706" alt="Screenshot 2023-09-15 at 10 38 01" src="https://github.com/swomics/PepMothSel/assets/44398000/5ac7a0a7-f7cd-4d56-a738-3d64f6003881">
+<img width="706" alt="Screenshot 2023-09-15 at 10 38 01" src="https://github.com/swomics/PepMothSel/assets/44398000/0ad113b6-dce1-475c-ae5e-a0c80fb57cc5">
 
 Figure 2: The same population model, as encoded and depicted in Slim:
 
