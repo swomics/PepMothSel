@@ -52,3 +52,19 @@ Figure 5: The same population model, as encoded and depicted in Slim:
 
 
 
+
+##
+
+export XDG_RUNTIME_DIR=/scratch/
+
+conda activate msprime2
+
+python msprime_initialise.py
+
+python sbi_inference.py
+
+
+
+
+
+
