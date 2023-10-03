@@ -54,8 +54,9 @@ Figure 5: The same population model, as encoded and depicted in Slim:
 
 
 ##
-
-export XDG_RUNTIME_DIR=/scratch/
+mkdir /scratch/samw/
+export XDG_RUNTIME_DIR=/scratch/samw/
+chmod 0700 /scratch/samw/
 
 conda activate msprime2
 
