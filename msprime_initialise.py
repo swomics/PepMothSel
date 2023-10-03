@@ -147,7 +147,7 @@ ts = msprime.sim_ancestry(
             samples=200,
             end_time=1000,
             demography=demog,
-            recombination_rate=2.9e-9,
+            recombination_rate=4.4397e-8,
             sequence_length=14726131,
             random_seed=5)
 ts = pyslim.annotate(ts, model_type="WF", tick=1)
