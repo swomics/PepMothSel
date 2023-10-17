@@ -1,0 +1,284 @@
+initialize() {
+//heliconius u
+initializeMutationRate(2.9e-9);
+
+//initializeMutationRate(2.9e-9);
+
+initializeTreeSeq();
+initializeMutationType("m1", 0.5, "f", 0.0);
+initializeMutationType("m2", 1.0, "f", 0.0); // introduced melanic mutation
+initializeMutationType("m3", 1.0, "f", 0.0); // introduced intermediate mutation
+
+initializeGenomicElementType("g1", m1, 1.0);
+initializeGenomicElementType("g2", c(m2,m3), c(1.0,1.0));
+
+// size of chromosome 17 is 14726131bp
+initializeGenomicElement(g1, 0, 12390000);
+//g2 represents cortex region where m2 & m3 occur
+initializeGenomicElement(g2, 12390001, 12400000);
+initializeGenomicElement(g1, 12400001, 14726131);
+// recombination rate comes from analysis of heredity 2012 data compared to physical size
+initializeRecombinationRate(4.4397e-8);
+
+}
+1 early() {
+// save this run's identifier, used to save and restore
+//sim.readFromPopulationFile("~/Desktop/PostDoc/Biston/Slim_simulations/100KGen_burnin_run1.txt");
+defineConstant("simID", getSeed());
+sim.addSubpop("p1", 100);
+sim.addSubpop("p2", 100);
+sim.addSubpop("p3", 100);
+sim.addSubpop("p4", 100);
+sim.addSubpop("p5", 100);
+p1.setMigrationRates(p2, 0.2); //  migration p1 -> p2
+p2.setMigrationRates(p1, 0.2); //  migration p2 -> p1
+
+p2.setMigrationRates(p3, 0.2); //  migration p2 -> u3
+p3.setMigrationRates(p2, 0.2); //  migration p3 -> p2
+
+p3.setMigrationRates(p4, 0.2); //  migration p3 -> p4
+p4.setMigrationRates(p3, 0.2); //  migration p4 -> p3
+
+p3.setMigrationRates(p5, 0.2); //  migration p3 -> p5
+p5.setMigrationRates(p3, 0.2); //  migration p5 -> p3
+
+p4.setMigrationRates(p5, 0.2); //  migration p4 -> p5
+p5.setMigrationRates(p4, 0.2); //  migration p5 -> p4
+
+
+}
+
+
+// m2 mutations are arising continuously (but at the snp mutation rate, which differs from TEs)
+// The simulation end point is the 33 years after positive selection stops 
+// 1980 pollution stops up to sample timepoint which is 2013
+
+
+// 100000 generations of burn-in 10Ne
+1:840 mutationEffect(m2) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+1:840 mutationEffect(m3) {
+if (homozygous)
+return 0.95;
+else
+return 0.95;
+}
+
+
+// Onset of selection using our supplementary spread of industrialisation plot
+///
+
+// We make effect of m2 mutation confer fitness of 0.9 pre and post pollution and fitness of 1.3 during, this hopefully corresponds to s = 0.1 against and s = 0.3 in favour repsectively.
+// Need to check if multiple m2 mutations of different lineages give an additive effect or not
+
+//Western European lowlands (p1), onset 1840
+
+1:840 mutationEffect(m2,p1) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+1:840 mutationEffect(m3,p1) {
+if (homozygous)
+return 0.95;
+else
+return 0.95;
+}
+
+
+
+841:970 mutationEffect(m2,p1) {
+if (homozygous)
+return 1.3;
+else
+return 1.3;
+}
+
+//intermediate
+841:970 mutationEffect(m3,p1) {
+if (homozygous)
+return 1.15;
+else
+return 1.15;
+}
+
+
+//Western European lowlands (p1) clean up 1970 
+
+971:1013 mutationEffect(m2,p1) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+971:1013 mutationEffect(m3,p1) {
+if (homozygous)
+return 0.95;
+else
+return 0.95;
+}
+
+/// East Germany (p3) onset is 1860
+
+1:860 mutationEffect(m2,p3) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+1:860 mutationEffect(m3,p3) {
+if (homozygous)
+return 0.95;
+else
+return 0.95;
+}
+
+
+
+861:990 mutationEffect(m2,p3) {
+if (homozygous)
+return 1.3;
+else
+return 1.3;
+}
+
+//intermediate
+861:990 mutationEffect(m3,p3) {
+if (homozygous)
+return 1.15;
+else
+return 1.15;
+}
+
+/// East Germany (p3) clean up 1990
+
+991:1013 mutationEffect(m2,p3) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+991:1013 mutationEffect(m2,p3) {
+if (homozygous)
+return 0.95;
+else
+return 0.95;
+}
+
+/// Further East (p5) onset is 1870
+
+1:870 mutationEffect(m2,p5) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+1:870 mutationEffect(m3,p5) {
+if (homozygous)
+return 0.95;
+else
+return 0.95;
+}
+
+
+
+871:990 mutationEffect(m2,p5) {
+if (homozygous)
+return 1.3;
+else
+return 1.3;
+}
+
+//intermediate
+871:990 mutationEffect(m3,p5) {
+if (homozygous)
+return 1.15;
+else
+return 1.15;
+}
+
+/// Further Germany (p5) clean up 1990
+
+991:1013 mutationEffect(m2,p5) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+991:1013 mutationEffect(m3,p5) {
+if (homozygous)
+return 0.95;
+else
+return 0.95;
+}
+
+
+
+// melanic alleles in the unpolluted resevoirs p2 & p4 remain mildly deleterious for suration of simulation
+1:1013 mutationEffect(m2,p2) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+1:1013 mutationEffect(m3,p2) {
+if (homozygous)
+return 0.95;
+else
+return 0.95;
+}
+
+1:1013 mutationEffect(m2,p4) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+//intermediate
+1:1013 mutationEffect(m3,p4) {
+if (homozygous)
+return 0.9;
+else
+return 0.9;
+}
+
+
+// these lines output some sampled vcf files of 500 individuals
+
+//1013 late(){
+//p1.outputVCFSample(sampleSize=50,filePath="~/Bbet_sequencing/PacBio_project_2021/West_EU_PanGenie/genotyping/msprime_1/p1.vcf",simplifyNucleotides=T);
+//}
+
+//1013 late(){
+//p3.outputVCFSample(sampleSize=300,filePath="~/Bbet_sequencing/PacBio_project_2021/West_EU_PanGenie/genotyping/msprime_1/p3.vcf",simplifyNucleotides=T);
+//}
+
+//1013 late(){
+//p5.outputVCFSample(sampleSize=200,filePath="~/Bbet_sequencing/PacBio_project_2021/West_EU_PanGenie/genotyping/msprime_1/p5.vcf",simplifyNucleotides=T);
+//}
+
+1013 late(){
+sim.treeSeqOutput("P_struct_out.trees");
+}
