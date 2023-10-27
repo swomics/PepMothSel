@@ -1,0 +1,41 @@
+initialize() {
+//heliconius u
+//real µ is 2.9e-9
+initializeMutationRate(2.9e-8);
+
+// m1 is neutral mutations, m2 is melanic mutations
+initializeMutationType("m1", 0.5, "f", 0.0);
+initializeMutationType("m2", 1.0, "f", 0.0); // introduced melanic mutation
+
+//g1 represents the genomic flanks (2Mbp either side here)
+initializeGenomicElementType("g1", m1, 1.0);
+//g2 represents the functional mutation region (1kbp in size here)
+initializeGenomicElementType("g2", m2, 1.0);
+
+initializeGenomicElement(g1, 0, 10000);
+initializeGenomicElement(g2, 10001, 11000);
+initializeGenomicElement(g1, 11001, 20000);
+
+
+/// recombination rate comes from analysis of heredity 2012 data compared to physical size
+//real µ is 2.9e-8
+initializeRecombinationRate(4.4397e-7);
+}
+1 early() {
+// save this run's identifier, used to save and restore
+defineConstant("simID", getSeed());
+//real Ne is 5,000,000
+sim.addSubpop("p1", 500000);
+
+
+}
+
+
+1:1000 mutationEffect(m2) {
+if (homozygous)
+//real s = 0.3 fitness = 1.3
+return 13.0;
+else
+return 13.0;
+}
+
